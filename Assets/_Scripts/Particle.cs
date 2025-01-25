@@ -1,6 +1,5 @@
 using System;
 using _Scripts.ParticleTypes;
-using MyHelpers.Grid;
 using UnityEngine;
 
 namespace _Scripts
@@ -8,34 +7,29 @@ namespace _Scripts
     [Serializable]
     public class Particle
     {
+        // states
         private Color color;
         private ParticleType particleType;
-        
-        public Color Color => color;
-        public bool Updated { get; set; } 
+        private Vector2 velocity;
 
-        private void SetColor(Color _color)
-        {
-            color = _color;
-        }
+        // properties
+        public Color Color { get; private set; }
+        public bool Updated { get; set; }
+        public ParticleType ParticleType => particleType;
 
         public void SetType(ParticleType _particleType)
         {
             // Debug.Log($"Setting type to {_particleType}");
             particleType = _particleType;
-            SetColor(particleType.color);
+            Color = _particleType.color;
             Updated = true;
         }
 
-        public void Step(Vector2Int _position, ParticleEfficientContainer _particleContainer, ParticleTypeSet _particleTypeSet)
+        public void Step(Vector2Int _position, ParticleEfficientContainer _particleContainer,
+            ParticleTypeSet _particleTypeSet)
         {
             if (Updated) return;
             particleType.Step(this, _position, _particleContainer, _particleTypeSet);
-        }
-
-        public ParticleType ParticleType()
-        {
-            return particleType;
         }
     }
 }

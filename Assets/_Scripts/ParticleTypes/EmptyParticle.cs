@@ -1,4 +1,3 @@
-using MyHelpers.Grid;
 using UnityEngine;
 
 namespace _Scripts.ParticleTypes

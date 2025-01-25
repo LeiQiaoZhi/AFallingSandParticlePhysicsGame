@@ -1,10 +1,8 @@
-using System;
 using _Scripts.ParticleTypes;
 using MyHelpers;
 using MyHelpers.Variables;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace _Scripts
 {
@@ -14,6 +12,7 @@ namespace _Scripts
         public ParticleTypeSet particleTypes;
         public IntReference selectedButtonIndex;
         public IntReference brushSize;
+        public FloatReference brushDensity;
 
         private Vector2 mousePosition;
         private Vector2 mouseWorldPosition;
@@ -32,6 +31,8 @@ namespace _Scripts
                 {
                     for (var y = bottomLeft.y; y <= topRight.y; y++)
                     {
+                        if (Random.value > brushDensity.Value) continue;
+                        
                         Particle particle = particlesContainer.GetParticleByLocalPosition(new Vector2Int(x, y));
                         if (particle != null)
                         {
