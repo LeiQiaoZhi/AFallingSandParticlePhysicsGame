@@ -1,30 +1,43 @@
+using System;
 using _Scripts.ParticleTypes;
 using MyHelpers;
 using MyHelpers.Variables;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace _Scripts
 {
     public class ParticlePainter : MonoBehaviour
     {
-        [SerializeField] private ParticleGridContainer gridContainer;
+        [SerializeField] private ParticleEfficientContainer particlesContainer;
         public ParticleTypeSet particleTypes;
-        private Vector2 mousePosition;
-        private bool isPainting;
         public IntReference selectedButtonIndex;
+        public IntReference brushSize;
+
+        private Vector2 mousePosition;
+        private Vector2 mouseWorldPosition;
+        private bool isPainting;
 
         private void Update()
         {
             if (isPainting)
             {
-                Vector3 mouseWorldPosition = Helpers.Camera.ScreenToWorldPoint(mousePosition);
-                mouseWorldPosition.z = 0;
-                Particle particle = gridContainer.GetObjectByWorld(mouseWorldPosition);
-                if (particle != null)
+                mouseWorldPosition = Helpers.Camera.ScreenToWorldPoint(mousePosition);
+                Vector2Int center = particlesContainer.WorldToLocalPosition(mouseWorldPosition);
+                Vector2Int bottomLeft = center - Vector2Int.one * brushSize.Value;
+                Vector2Int topRight = center + Vector2Int.one * brushSize.Value;
+
+                for (var x = bottomLeft.x; x <= topRight.x; x++)
                 {
-                    Debug.Log("Painting");
-                    particle.SetType(particleTypes.particleTypes[selectedButtonIndex.Value]);
+                    for (var y = bottomLeft.y; y <= topRight.y; y++)
+                    {
+                        Particle particle = particlesContainer.GetParticleByLocalPosition(new Vector2Int(x, y));
+                        if (particle != null)
+                        {
+                            particle.SetType(particleTypes.particleTypes[selectedButtonIndex.Value]);
+                        }
+                    }
                 }
             }
         }
@@ -48,6 +61,13 @@ namespace _Scripts
             {
                 mousePosition = context.ReadValue<Vector2>();
             }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Vector2 cellWorldSize = particlesContainer.WorldSize / particlesContainer.Size;
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(mouseWorldPosition, cellWorldSize * brushSize.Value * 2);
         }
     }
 }

@@ -1,33 +1,31 @@
 using System;
 using _Scripts.ParticleTypes;
+using MyBox;
 using UnityEngine;
 
 namespace _Scripts
 {
     public class ParticleUpdater : MonoBehaviour
     {
-        public ParticleGridFiller gridFiller;
+        [Header("Dependencies")]
+        public ParticleEfficientContainer particlesContainer;
+        public ParticlesRenderer particlesRenderer;
+        [Header("Settings")]
         public ParticleTypeSet particleTypeSet;
         [Range(1, 120)]
         public int updatesPerSecond = 30;
 
         private float nextUpdateTime;
         
-        private void Start()
+        private void Awake()
         {
-            gridFiller.FillGrid();
+            particlesContainer.Initialize();
 
-            for (var x = gridFiller.Mins.x; x <= gridFiller.Maxs.x; x++)
+            ForEachParticle((_particle, _x, _y) =>
             {
-                for (var y = gridFiller.Mins.y; y <= gridFiller.Maxs.y; y++)
-                {
-                    Particle particle = gridFiller.gridContainer.GetObjectByCell(new Vector3Int(x, y, 0));
-                    if (particle != null)
-                    {
-                        particle.SetType(particleTypeSet.GetInstanceByType(typeof(EmptyParticle)));
-                    }
-                }
-            }
+                _particle.SetType(particleTypeSet.GetInstanceByType(typeof(EmptyParticle)));
+            });
+            
         }
 
         private void Update()
@@ -37,24 +35,33 @@ namespace _Scripts
             UpdateParticles();
         }
 
-        public void UpdateParticles()
+        private void UpdateParticles()
         {
-            ForEachParticle((_particle, x, y) =>
+            TimeTest.Start("UpdateParticles", true);
+            ForEachParticle((_particle, _x, _y) =>
             {
-                _particle.Step(new Vector2Int(x, y), gridFiller.gridContainer, particleTypeSet);
+                _particle.Step(new Vector2Int(_x, _y), particlesContainer, particleTypeSet);
             });
+            TimeTest.End();
 
             // Reset all particles to not updated
+            TimeTest.Start("Reset Particles States", true);
             ForEachParticle((_particle, _, _) => _particle.Updated = false);
+            TimeTest.End();
+            
+            TimeTest.Start("Render Particles", true);
+            particlesRenderer.RenderParticles(particlesContainer);
+            TimeTest.End();
         }
 
         private void ForEachParticle(Action<Particle, int, int> _action)
         {
-            for (var x = gridFiller.Mins.x; x <= gridFiller.Maxs.x; x++)
+            Vector2Int size = particlesContainer.Size;
+            for (var x = 0; x < size.x; x++)
             {
-                for (var y = gridFiller.Mins.y; y <= gridFiller.Maxs.y; y++)
+                for (var y = 0; y < size.y; y++)
                 {
-                    Particle particle = gridFiller.gridContainer.GetObjectByCell(new Vector3Int(x, y, 0));
+                    Particle particle = particlesContainer.GetParticleByLocalPosition(new Vector2Int(x, y));
                     if (particle != null)
                     {
                         _action(particle, x, y);

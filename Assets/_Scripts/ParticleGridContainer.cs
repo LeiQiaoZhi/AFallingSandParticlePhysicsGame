@@ -1,8 +1,8 @@
-using MyHelpers.Grid;
-
-namespace _Scripts
-{
-    public class ParticleGridContainer : GenericGridContainer<Particle>
-    {
-    }
-}
+// using MyHelpers.Grid;
+//
+// namespace _Scripts
+// {
+//     public class ParticleGridContainer : GenericGridContainer<Particle>
+//     {
+//     }
+// }

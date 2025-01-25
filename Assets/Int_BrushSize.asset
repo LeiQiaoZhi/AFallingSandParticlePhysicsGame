@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 625617b6de9048d28f95fa6b4a665763, type: 3}
-  m_Name: StaticParticle
+  m_Script: {fileID: 11500000, guid: 02320eaa318241cd8d2859f44332ae4b, type: 3}
+  m_Name: Int_BrushSize
   m_EditorClassIdentifier: 
-  color: {r: 0.3584906, g: 0.1775543, b: 0.1775543, a: 1}
-  particleName: Static
+  value: 0

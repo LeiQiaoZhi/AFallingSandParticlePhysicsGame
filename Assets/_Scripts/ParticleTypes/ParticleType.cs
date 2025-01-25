@@ -9,6 +9,6 @@ namespace _Scripts.ParticleTypes
         public string particleName;
 
         public abstract void Step(Particle _particle, Vector2Int _position,
-            GenericGridContainer<Particle> _gridContainer, ParticleTypeSet _particleTypeSet);
+            ParticleEfficientContainer _particleContainer, ParticleTypeSet _particleTypeSet);
     }
 }
