@@ -25,7 +25,6 @@ namespace _Scripts
             {
                 _particle.SetType(particleTypeSet.GetInstanceByType(typeof(EmptyParticle)));
             });
-            
         }
 
         private void Update()

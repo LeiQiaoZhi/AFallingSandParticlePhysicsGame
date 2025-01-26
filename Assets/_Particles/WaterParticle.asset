@@ -19,4 +19,5 @@ MonoBehaviour:
   speedMultiplier: 100
   resistance: 1
   gravity: 4
-  horizontalSpeed: 8
+  horizontalSpeed: 20
+  friction: 6.62

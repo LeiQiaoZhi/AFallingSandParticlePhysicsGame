@@ -14,13 +14,18 @@ namespace _Scripts.ParticleTypes
             // update speed
             _dt *= speedMultiplier;
 
-
             Vector2Int[] pointsToTest =
             {
                 _position + Vector2Int.down,
                 _position + Vector2Int.down + Vector2Int.left,
                 _position + Vector2Int.down + Vector2Int.right,
+                _position + Vector2Int.left,
+                _position + Vector2Int.right
             };
+            if (Random.value < 0.5f)
+                (pointsToTest[1], pointsToTest[2]) = (pointsToTest[2], pointsToTest[1]);
+            if (Random.value < 0.5f)
+                (pointsToTest[^2], pointsToTest[^1]) = (pointsToTest[^1], pointsToTest[^2]);
 
             foreach (Vector2Int pointToTest in pointsToTest)
             {
@@ -30,8 +35,11 @@ namespace _Scripts.ParticleTypes
                     && particleToTest.ParticleType is EmptyParticle or WaterParticle
                 )
                 {
-                    UpdateVelocity(_particle, _dt, particleToTest.ParticleType.resistance);
+                    // Friction
+                    var f = CalculateFriction(_particleContainer, _position);
                     
+                    UpdateVelocity(_particle, _dt, particleToTest.ParticleType.resistance, f, horizontalSpeed);
+
                     // Buoyancy
                     if (particleToTest.ParticleType is WaterParticle)
                     {
@@ -40,19 +48,19 @@ namespace _Scripts.ParticleTypes
                     }
 
                     var verticalOffset = (int)(_particle.Velocity.y * _dt);
-                    var horizontalOffset = (int)(horizontalSpeed * _dt);
+                    var horizontalOffset = (int)(_particle.Velocity.x * _dt);
                     Assert.IsTrue(verticalOffset >= 0, "Vertical offset must be positive");
+                    Assert.IsTrue(horizontalOffset >= 0, "Horizontal offset must be positive");
 
                     var offset = new Vector2Int(
                         (pointToTest.x - _position.x) * horizontalOffset,
                         (pointToTest.y - _position.y) * verticalOffset
                     );
-
                     Vector2Int target = _position + offset;
                     Vector2Int destination = TryMoveToTarget(pointToTest, target, _particleContainer,
                         _p => _p.ParticleType is not (EmptyParticle or WaterParticle)
                     );
-                    
+
                     if (offset.sqrMagnitude > 0.9)
                         _particleContainer.Swap(_position, destination);
 
@@ -60,5 +68,6 @@ namespace _Scripts.ParticleTypes
                 }
             }
         }
+
     }
 }

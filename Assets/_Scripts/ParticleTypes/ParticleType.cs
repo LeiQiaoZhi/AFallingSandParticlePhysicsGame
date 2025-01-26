@@ -23,12 +23,10 @@ namespace _Scripts.ParticleTypes
         private Color color2;
 
         [Header("Physics Settings")] public float speedMultiplier = 1;
-
-        [FormerlySerializedAs("airResistance")]
         public float resistance = 1;
-
         public float gravity = 9.81f;
         public int horizontalSpeed = 2;
+        public float friction = 0;
 
         public Color Color
         {
@@ -86,12 +84,27 @@ namespace _Scripts.ParticleTypes
             return lastValidPoint; // Return the last valid point processed
         }
 
-        protected void UpdateVelocity(Particle _particle, float _dt, float _resistance)
+        protected void UpdateVelocity(Particle _particle, float _dt, float _resistance, float _friction, float _horizontalAcc)
         {
-            var currentVelocity = _particle.Velocity.y;
-            var acc = -_resistance * currentVelocity * currentVelocity + gravity;
-            var newVelocity = Mathf.Clamp(_particle.Velocity.y + acc * _dt, 0, 10);
-            _particle.Velocity = new Vector2(_particle.Velocity.x, newVelocity);
+            // vertical
+            var vertical = _particle.Velocity.y;
+            var verticalAcc = -_resistance * vertical * vertical + gravity;
+            var newVertical = Mathf.Clamp(_particle.Velocity.y + verticalAcc * _dt, 0, 10);
+            
+            // horizontal
+            var horizontalAcc = -_friction + _horizontalAcc;
+            var newHorizontal = Mathf.Clamp(_particle.Velocity.x + horizontalAcc * _dt, 0, 10);
+            
+            _particle.Velocity = new Vector2(newHorizontal, newVertical);
+        }
+        
+        
+        protected float CalculateFriction(ParticleEfficientContainer _particleContainer, Vector2Int _position)
+        {
+            Particle particleGivingFriction = _particleContainer.GetParticleByLocalPosition(
+                _position + Vector2Int.down
+            );
+            return particleGivingFriction != null ? particleGivingFriction.ParticleType.friction : friction;
         }
     }
 }

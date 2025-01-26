@@ -10,7 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 625617b6de9048d28f95fa6b4a665763, type: 3}
-  m_Name: StaticParticle
+  m_Name: WoodParticle
   m_EditorClassIdentifier: 
+  particleName: Wood
+  colorType: 0
   color: {r: 0.3584906, g: 0.1775543, b: 0.1775543, a: 1}
-  particleName: Static
+  color2: {r: 0, g: 0, b: 0, a: 0}
+  speedMultiplier: 1
+  resistance: 1
+  gravity: 9.81
+  horizontalSpeed: 2
+  friction: 3
