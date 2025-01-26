@@ -40,7 +40,7 @@ namespace _Scripts
             TimeTest.Start("UpdateParticles", true);
             ForEachParticle((_particle, _x, _y) =>
             {
-                _particle.Step(new Vector2Int(_x, _y), particlesContainer, particleTypeSet);
+                _particle.Step(new Vector2Int(_x, _y), particlesContainer, particleTypeSet, 1f / updatesPerSecond);
             });
             TimeTest.End();
 

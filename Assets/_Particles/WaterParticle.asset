@@ -14,3 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0.17021184, g: 0.43903857, b: 0.8018868, a: 1}
   particleName: Water
+  speedMultiplier: 20
+  airResistance: 1
+  gravity: 11
+  mass: 10
+  horizontalSpeed: 8

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Scripts
@@ -8,10 +9,27 @@ namespace _Scripts
     public class ParticlesRenderer : MonoBehaviour
     {
         public MeshRenderer meshRenderer;
+        
+        private Texture2D texture;
+        private Color[] colors;
 
         private void Reset()
         {
             meshRenderer = GetComponent<MeshRenderer>();
+        }
+
+        public void Initialize(Vector2Int _size)
+        {
+            texture = new Texture2D(_size.x, _size.y);
+            colors = new Color[_size.x * _size.y];
+            for (var x = 0; x < _size.x; x++)
+            {
+                for (var y = 0; y < _size.y; y++)
+                {
+                    colors[x + y * _size.x] = Color.black;
+                }
+            }
+            texture.filterMode = FilterMode.Point;
         }
 
         public void RenderParticles(ParticleEfficientContainer _particlesContainer)
@@ -19,8 +37,6 @@ namespace _Scripts
             var width = _particlesContainer.Size.x;
             var height = _particlesContainer.Size.y;
 
-            var texture = new Texture2D(width, height);
-            var colors = new Color[width * height];
             for (var x = 0; x < width; x++)
             {
                 for (var y = 0; y < height; y++)
@@ -30,7 +46,6 @@ namespace _Scripts
                 }
             }
 
-            texture.filterMode = FilterMode.Point;
             texture.SetPixels(colors);
             texture.Apply();
 

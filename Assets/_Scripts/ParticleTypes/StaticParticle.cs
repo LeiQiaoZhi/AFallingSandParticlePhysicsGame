@@ -6,7 +6,7 @@ namespace _Scripts.ParticleTypes
     public class StaticParticle : ParticleType
     {
         public override void Step(Particle _particle, Vector2Int _position,
-            ParticleEfficientContainer _particleContainer, ParticleTypeSet _particleTypeSet)
+            ParticleEfficientContainer _particleContainer, ParticleTypeSet _particleTypeSet, float _dt)
         {
         }
     }

@@ -10,12 +10,18 @@ namespace _Scripts
         // states
         private Color color;
         private ParticleType particleType;
-        private Vector2 velocity;
+        private Vector2 velocity = Vector2.zero;
 
         // properties
         public Color Color { get; private set; }
         public bool Updated { get; set; }
         public ParticleType ParticleType => particleType;
+
+        public Vector2 Velocity
+        {
+            get => velocity;
+            set => velocity = value;
+        }
 
         public void SetType(ParticleType _particleType)
         {
@@ -26,10 +32,10 @@ namespace _Scripts
         }
 
         public void Step(Vector2Int _position, ParticleEfficientContainer _particleContainer,
-            ParticleTypeSet _particleTypeSet)
+            ParticleTypeSet _particleTypeSet, float _dt)
         {
             if (Updated) return;
-            particleType.Step(this, _position, _particleContainer, _particleTypeSet);
+            particleType.Step(this, _position, _particleContainer, _particleTypeSet, _dt);
         }
     }
 }

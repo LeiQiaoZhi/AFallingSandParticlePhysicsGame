@@ -1,3 +1,4 @@
+using MyHelpers;
 using UnityEngine;
 
 namespace _Scripts
@@ -31,6 +32,14 @@ namespace _Scripts
                     particles[x, y] = new Particle();
                 }
             }
+            particlesRenderer.Initialize(size);
+        }
+        
+        public void Swap(Vector2Int _position1, Vector2Int _position2)
+        {
+            particles[_position1.x, _position1.y].Updated = true;
+            particles[_position2.x, _position2.y].Updated = true;
+            (particles[_position1.x, _position1.y], particles[_position2.x, _position2.y]) = (particles[_position2.x, _position2.y], particles[_position1.x, _position1.y]);
         }
 
         public Particle GetParticleByLocalPosition(Vector2Int _position)
@@ -91,6 +100,15 @@ namespace _Scripts
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(BottomLeftWorldPosition + WorldSize / 2, WorldSize);
             Gizmos.DrawWireSphere(BottomLeftWorldPosition, 1.0f);
+            
+            // Gizmos.color = Color.green;
+            // var points = Helpers.LinePoints(Vector2Int.zero, new Vector2Int(50, 10));
+            // Debug.Log(string.Join(", ", points));
+            // foreach (Vector2Int point in points)
+            // {
+            //     var worldPosition = BottomLeftWorldPosition + new Vector2(point.x, point.y) * WorldSize / size; 
+            //     Gizmos.DrawWireCube(worldPosition, WorldSize / size);
+            // }
         }
     }
 }
