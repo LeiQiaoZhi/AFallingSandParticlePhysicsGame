@@ -22,6 +22,9 @@ MonoBehaviour:
   horizontalSpeed: 2
   friction: 4
   corrosionResistance: 10
-  lifetime: 0
+  lifetime:
+    enabled: 0
+    value: 0
   infammability: 0
+  reactions: []
   buoyancy: 5

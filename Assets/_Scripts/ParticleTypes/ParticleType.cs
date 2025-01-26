@@ -3,7 +3,6 @@ using _Scripts.Reactions;
 using MyBox;
 using MyHelpers;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace _Scripts.ParticleTypes

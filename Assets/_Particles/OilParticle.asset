@@ -26,6 +26,5 @@ MonoBehaviour:
     enabled: 0
     value: 0
   infammability: 0.338
-  reactions:
-  - {fileID: 11400000, guid: 98a4014fb99bd4840b17daf0cec1b8e7, type: 2}
+  reactions: []
   density: 0

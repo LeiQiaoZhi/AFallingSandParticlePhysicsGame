@@ -1,3 +1,4 @@
+using MyBox;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -11,7 +12,6 @@ namespace _Scripts.ParticleTypes
         public override void Step(Particle _particle, Vector2Int _position,
             ParticleEfficientContainer _particleContainer, ParticleTypeSet _particleTypeSet, float _dt)
         {
-            // update speed
             _dt *= speedMultiplier;
 
             Vector2Int[] pointsToTest =
@@ -32,7 +32,7 @@ namespace _Scripts.ParticleTypes
                 Particle particleToTest = _particleContainer.GetParticleByLocalPosition(pointToTest);
                 if (
                     particleToTest != null
-                    && particleToTest.ParticleType is EmptyParticle or WaterParticle
+                    && particleToTest.ParticleType is EmptyParticle or LiquidParticle
                 )
                 {
                     // Friction
@@ -41,7 +41,7 @@ namespace _Scripts.ParticleTypes
                     UpdateVelocity(_particle, _dt, particleToTest.ParticleType.resistance, f, horizontalSpeed);
 
                     // Buoyancy
-                    if (particleToTest.ParticleType is WaterParticle)
+                    if (particleToTest.ParticleType is LiquidParticle)
                     {
                         var v = Mathf.Clamp(_particle.Velocity.y - buoyancy, 0f, 10f);
                         _particle.Velocity = new Vector2(_particle.Velocity.x, v);
@@ -58,7 +58,7 @@ namespace _Scripts.ParticleTypes
                     );
                     Vector2Int target = _position + offset;
                     Vector2Int destination = TryMoveToTarget(pointToTest, target, _particleContainer,
-                        _p => _p.ParticleType is not (EmptyParticle or WaterParticle)
+                        _p => _p.ParticleType is not (EmptyParticle or LiquidParticle)
                     );
 
                     if (offset.sqrMagnitude > 0.9)
@@ -67,6 +67,9 @@ namespace _Scripts.ParticleTypes
                     return;
                 }
             }
+            
+            // react
+            reactions.ForEach(_reaction => _reaction.React(_particleContainer, _particle, _position));
         }
 
     }

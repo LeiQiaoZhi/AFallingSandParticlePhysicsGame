@@ -42,16 +42,16 @@ namespace _Scripts
                 for (var y = 0; y < height; y++)
                 {
                     Particle particle = _particlesContainer.GetParticleByLocalPosition(new Vector2Int(x, y));
-                    // colors[x + y * width] = particle.Color;
-                    if (particle.Color != colors[x + y * width])
-                    {
-                        colors[x + y * width] = particle.Color;
-                        texture.SetPixel(x, y, particle.Color);
-                    }
+                    colors[x + y * width] = particle.Color;
+                    // if (particle.Color != colors[x + y * width])
+                    // {
+                    //     colors[x + y * width] = particle.Color;
+                    //     texture.SetPixel(x, y, particle.Color);
+                    // }
                 }
             }
 
-            // texture.SetPixels(colors);
+            texture.SetPixels(colors);
             texture.Apply();
 
             meshRenderer.material.mainTexture = texture;

@@ -40,7 +40,7 @@ namespace _Scripts.ParticleTypes
             {
                 Particle particleToTest = _particleContainer.GetParticleByLocalPosition(pointToTest);
                 if (
-                    particleToTest != null && particleToTest.ParticleType is EmptyParticle or WaterParticle
+                    particleToTest != null && particleToTest.ParticleType is EmptyParticle or LiquidParticle
                 )
                 {
                     UpdateVelocity(_particle, _dt, particleToTest.ParticleType.resistance, friction, horizontalSpeed);
@@ -49,7 +49,7 @@ namespace _Scripts.ParticleTypes
                     var horizontalOffset = (int)(_particle.Velocity.x * _dt);
                     Assert.IsTrue(horizontalOffset >= 0, "Horizontal offset must be positive");
 
-                    if (particleToTest.ParticleType is WaterParticle)
+                    if (particleToTest.ParticleType is LiquidParticle)
                     {
                         verticalOffset = 2;
                         horizontalOffset = 2;
@@ -61,7 +61,7 @@ namespace _Scripts.ParticleTypes
                     );
                     Vector2Int target = _position + offset;
                     Vector2Int destination = TryMoveToTarget(pointToTest, target, _particleContainer,
-                        _p => _p.ParticleType is not (EmptyParticle or WaterParticle)
+                        _p => _p.ParticleType is not (EmptyParticle or LiquidParticle)
                     );
 
                     if (offset.sqrMagnitude > 0.9)

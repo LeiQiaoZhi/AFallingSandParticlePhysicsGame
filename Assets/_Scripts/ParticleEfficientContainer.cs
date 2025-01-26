@@ -1,4 +1,6 @@
 using System.Runtime.CompilerServices;
+using _Scripts.ParticleTypes;
+using _Scripts.Save;
 using MyHelpers;
 using UnityEngine;
 
@@ -16,6 +18,7 @@ namespace _Scripts
 
         // Properties
         public Particle[,] Particles => particles;
+
         public Vector2Int Size => size;
 
         public Vector2 WorldSize =>
@@ -33,14 +36,16 @@ namespace _Scripts
                     particles[x, y] = new Particle();
                 }
             }
+
             particlesRenderer.Initialize(size);
         }
-        
+
         public void Swap(Vector2Int _position1, Vector2Int _position2)
         {
             particles[_position1.x, _position1.y].Updated = true;
             particles[_position2.x, _position2.y].Updated = true;
-            (particles[_position1.x, _position1.y], particles[_position2.x, _position2.y]) = (particles[_position2.x, _position2.y], particles[_position1.x, _position1.y]);
+            (particles[_position1.x, _position1.y], particles[_position2.x, _position2.y]) = (
+                particles[_position2.x, _position2.y], particles[_position1.x, _position1.y]);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -86,15 +91,17 @@ namespace _Scripts
             SetParticleByLocalPosition(localPosition, _particle);
         }
 
-        public void Clear()
+        public void Load(SerializableContainer _data, ParticleTypeSet _particleTypeSet)
         {
+            size = new Vector2Int(_data.width, _data.height);
             for (var x = 0; x < size.x; x++)
             {
                 for (var y = 0; y < size.y; y++)
                 {
-                    particles[x, y] = null;
+                    particles[x, y].Deserialize(_data.particles[x, y], _particleTypeSet);
                 }
             }
+            particlesRenderer.Initialize(size);
         }
 
         private void OnDrawGizmos()
@@ -102,7 +109,7 @@ namespace _Scripts
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(BottomLeftWorldPosition + WorldSize / 2, WorldSize);
             Gizmos.DrawWireSphere(BottomLeftWorldPosition, 1.0f);
-            
+
             // Gizmos.color = Color.green;
             // var points = Helpers.LinePoints(Vector2Int.zero, new Vector2Int(50, 10));
             // Debug.Log(string.Join(", ", points));

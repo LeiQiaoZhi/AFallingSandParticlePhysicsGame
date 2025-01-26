@@ -26,4 +26,5 @@ MonoBehaviour:
     enabled: 0
     value: 0
   infammability: 0
-  buoyancy: 7
+  reactions: []
+  buoyancy: 3.93

@@ -9,22 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7a66730ece04ff8b73ecb5296f398ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 4400e585fb4a424998efdf445cb546f3, type: 3}
   m_Name: WaterParticle
   m_EditorClassIdentifier: 
   particleName: Water
   colorType: 0
-  color: {r: 0.17021184, g: 0.43903857, b: 0.8018868, a: 1}
+  color: {r: 0.10933607, g: 0.40758726, b: 0.8584906, a: 1}
   color2: {r: 0, g: 0, b: 0, a: 0}
   speedMultiplier: 100
   resistance: 1
   gravity: 4
-  horizontalSpeed: 469
+  horizontalSpeed: 10
   friction: 0
   corrosionResistance: 100
   lifetime:
     enabled: 0
     value: 0
   infammability: 0
-  reactions: []
-  steamParticle: {fileID: 11400000, guid: d221e6bb16346435aa4cb7a40d30f547, type: 2}
+  reactions:
+  - {fileID: 11400000, guid: a7281f87d7f8040e2b920b3974008f9b, type: 2}
+  - {fileID: 11400000, guid: 25b3dfdc5050f4d25aae47463858182c, type: 2}
+  density: 0
