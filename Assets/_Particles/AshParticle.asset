@@ -10,18 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8c51903468c47e28050f1c5bd4748a5, type: 3}
-  m_Name: SandParticle
+  m_Name: AshParticle
   m_EditorClassIdentifier: 
-  particleName: Sand
+  particleName: Ash
   colorType: 1
-  color: {r: 0.6509434, g: 0.4929136, b: 0.009211446, a: 1}
-  color2: {r: 1, g: 0.8227807, b: 0, a: 1}
+  color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+  color2: {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 1}
   speedMultiplier: 100
   resistance: 0
-  gravity: 4
+  gravity: 3
   horizontalSpeed: 2
-  friction: 4
+  friction: 6
   corrosionResistance: 10
-  lifetime: 0
+  lifetime:
+    enabled: 0
+    value: 0
   infammability: 0
-  buoyancy: 5
+  buoyancy: 7

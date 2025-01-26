@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using MyHelpers;
 using UnityEngine;
 
@@ -42,6 +43,7 @@ namespace _Scripts
             (particles[_position1.x, _position1.y], particles[_position2.x, _position2.y]) = (particles[_position2.x, _position2.y], particles[_position1.x, _position1.y]);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Particle GetParticleByLocalPosition(Vector2Int _position)
         {
             if (_position.x < 0 || _position.x >= size.x || _position.y < 0 || _position.y >= size.y)

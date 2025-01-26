@@ -13,11 +13,16 @@ MonoBehaviour:
   m_Name: WoodParticle
   m_EditorClassIdentifier: 
   particleName: Wood
-  colorType: 0
-  color: {r: 0.3584906, g: 0.1775543, b: 0.1775543, a: 1}
-  color2: {r: 0, g: 0, b: 0, a: 0}
+  colorType: 1
+  color: {r: 0.5377358, g: 0.27330676, b: 0.18516374, a: 1}
+  color2: {r: 0.4433962, g: 0.21977562, b: 0.14012992, a: 1}
   speedMultiplier: 1
   resistance: 1
   gravity: 9.81
   horizontalSpeed: 2
   friction: 3
+  corrosionResistance: 30
+  lifetime:
+    enabled: 0
+    value: 0
+  infammability: 0.55

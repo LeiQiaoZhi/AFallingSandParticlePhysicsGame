@@ -20,4 +20,7 @@ MonoBehaviour:
   resistance: 1
   gravity: 9.81
   horizontalSpeed: 2
-  friction: 1
+  friction: 2
+  corrosionResistance: 50
+  lifetime: 0
+  infammability: 0

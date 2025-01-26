@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df9bc63ca894a528e0b391bc7f198e0, type: 3}
+  m_Name: LavaParticle
+  m_EditorClassIdentifier: 
+  particleName: Lava
+  colorType: 1
+  color: {r: 1, g: 0.48422194, b: 0.12549019, a: 1}
+  color2: {r: 1, g: 0.64246726, b: 0.015686274, a: 1}
+  speedMultiplier: 100
+  resistance: 1
+  gravity: 1
+  horizontalSpeed: 4
+  friction: 0
+  corrosionResistance: 0
+  lifetime:
+    enabled: 0
+    value: 0
+  infammability: 0
+  smokeChance: 0.012
+  burnOutColor: {r: 0.28235295, g: 0.1693614, b: 0, a: 1}
+  smokeParticle: {fileID: 11400000, guid: 48a09c8de194b40849571f4c191fb690, type: 2}
+  steamParticle: {fileID: 11400000, guid: d221e6bb16346435aa4cb7a40d30f547, type: 2}
+  ashParticle: {fileID: 11400000, guid: 50f479e7e65b14bbcb5ec15d889bd032, type: 2}

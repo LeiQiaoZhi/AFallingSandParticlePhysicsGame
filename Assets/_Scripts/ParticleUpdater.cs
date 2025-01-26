@@ -36,21 +36,19 @@ namespace _Scripts
 
         private void UpdateParticles()
         {
-            TimeTest.Start("UpdateParticles", true);
+            // TimeTest.Start("UpdateParticles", true);
             ForEachParticle((_particle, _x, _y) =>
             {
                 _particle.Step(new Vector2Int(_x, _y), particlesContainer, particleTypeSet, 1f / updatesPerSecond);
             });
-            TimeTest.End();
+            // TimeTest.End();
 
             // Reset all particles to not updated
-            TimeTest.Start("Reset Particles States", true);
             ForEachParticle((_particle, _, _) => _particle.Updated = false);
-            TimeTest.End();
             
-            TimeTest.Start("Render Particles", true);
+            // TimeTest.Start("Render Particles", true);
             particlesRenderer.RenderParticles(particlesContainer);
-            TimeTest.End();
+            // TimeTest.End();
         }
 
         private void ForEachParticle(Action<Particle, int, int> _action)

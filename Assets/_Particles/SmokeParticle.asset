@@ -9,20 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4225acf9b1d7481dbf13dbf60ee491ef, type: 3}
-  m_Name: EmptyParticle
+  m_Script: {fileID: 11500000, guid: 78684809709c4e1ebe58ec381f3e13f4, type: 3}
+  m_Name: SmokeParticle
   m_EditorClassIdentifier: 
-  particleName: Delete
+  particleName: Smoke
   colorType: 0
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 0, g: 0, b: 0, a: 1}
   color2: {r: 0, g: 0, b: 0, a: 0}
-  speedMultiplier: 1
-  resistance: 0.1
-  gravity: 9.81
-  horizontalSpeed: 2
+  speedMultiplier: 25.28
+  resistance: 1
+  gravity: 3
+  horizontalSpeed: 1
   friction: 0
   corrosionResistance: 0
   lifetime:
-    enabled: 0
-    value: 0
+    enabled: 1
+    value: 6
   infammability: 0
+  endColor: {r: 0, g: 0, b: 0, a: 0}

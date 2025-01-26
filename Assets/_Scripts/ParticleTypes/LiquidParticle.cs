@@ -3,10 +3,9 @@ using UnityEngine.Assertions;
 
 namespace _Scripts.ParticleTypes
 {
-    [CreateAssetMenu(fileName = "WaterParticle", menuName = "Particles/WaterParticle", order = 3)]
-    public class WaterParticle : ParticleType
+    [CreateAssetMenu(fileName = "LiquidParticle", menuName = "Particles/LiquidParticle", order = 2)]
+    public class LiquidParticle : ParticleType
     {
-        public GasParticle steamParticle;
         public override void Step(Particle _particle, Vector2Int _position,
             ParticleEfficientContainer _particleContainer, ParticleTypeSet _particleTypeSet, float _dt)
         {
@@ -25,7 +24,12 @@ namespace _Scripts.ParticleTypes
                 (pointsToTest[1], pointsToTest[2]) = (pointsToTest[2], pointsToTest[1]);
             if (Random.value < 0.5f)
                 (pointsToTest[^2], pointsToTest[^1]) = (pointsToTest[^1], pointsToTest[^2]);
+            
+            var particlesToTest = new Particle[pointsToTest.Length];
+            for (int i = 0; i < pointsToTest.Length; i++)
+                particlesToTest[i] = _particleContainer.GetParticleByLocalPosition(pointsToTest[i]);
 
+            // movement
             foreach (Vector2Int pointToTest in pointsToTest)
             {
                 Particle particleToTest = _particleContainer.GetParticleByLocalPosition(pointToTest);
@@ -47,16 +51,8 @@ namespace _Scripts.ParticleTypes
                     );
                     Vector2Int target = _position + offset;
                     Vector2Int destination = TryMoveToTarget(pointToTest, target, _particleContainer,
-                        _p => _p.ParticleType is not (EmptyParticle or FireParticle)
+                        _p => _p.ParticleType is not EmptyParticle
                     );
-                    
-                    Particle destinationParticle = _particleContainer.GetParticleByLocalPosition(destination);
-                    if (destinationParticle != null && destinationParticle.ParticleType is FireParticle)
-                    {
-                        _particle.SetType(_particleTypeSet.GetInstanceByType(typeof(EmptyParticle)));
-                        destinationParticle.SetType(steamParticle);
-                        return;
-                    }
 
                     if (offset.sqrMagnitude > 0.9)
                         _particleContainer.Swap(_position, destination);

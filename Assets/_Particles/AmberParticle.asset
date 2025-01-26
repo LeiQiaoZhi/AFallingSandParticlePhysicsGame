@@ -9,21 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7a66730ece04ff8b73ecb5296f398ba, type: 3}
-  m_Name: WaterParticle
+  m_Script: {fileID: 11500000, guid: 5df9bc63ca894a528e0b391bc7f198e0, type: 3}
+  m_Name: AmberParticle
   m_EditorClassIdentifier: 
-  particleName: Water
+  particleName: Amber
   colorType: 0
-  color: {r: 0.17021184, g: 0.43903857, b: 0.8018868, a: 1}
+  color: {r: 1, g: 0.4730336, b: 0.12549019, a: 1}
   color2: {r: 0, g: 0, b: 0, a: 0}
   speedMultiplier: 100
   resistance: 1
-  gravity: 4
-  horizontalSpeed: 469
-  friction: 0
+  gravity: 1
+  horizontalSpeed: 2
+  friction: 3
   corrosionResistance: 0
   lifetime:
-    enabled: 0
-    value: 0
+    enabled: 1
+    value: 4
   infammability: 0
+  smokeChance: 0.069
+  ashChance: 0.1
+  burnOutColor: {r: 0.2830189, g: 0, b: 0, a: 1}
+  smokeParticle: {fileID: 11400000, guid: 48a09c8de194b40849571f4c191fb690, type: 2}
   steamParticle: {fileID: 11400000, guid: d221e6bb16346435aa4cb7a40d30f547, type: 2}
+  ashParticle: {fileID: 11400000, guid: d285dcca99e65494988b985e55f382c7, type: 2}

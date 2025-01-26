@@ -9,19 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8c51903468c47e28050f1c5bd4748a5, type: 3}
-  m_Name: SandParticle
+  m_Script: {fileID: 11500000, guid: 4400e585fb4a424998efdf445cb546f3, type: 3}
+  m_Name: OilParticle
   m_EditorClassIdentifier: 
-  particleName: Sand
-  colorType: 1
-  color: {r: 0.6509434, g: 0.4929136, b: 0.009211446, a: 1}
-  color2: {r: 1, g: 0.8227807, b: 0, a: 1}
+  particleName: Oil
+  colorType: 0
+  color: {r: 0.8113208, g: 0.7653413, b: 0.63910645, a: 1}
+  color2: {r: 0, g: 0, b: 0, a: 0}
   speedMultiplier: 100
-  resistance: 0
+  resistance: 1
   gravity: 4
-  horizontalSpeed: 2
+  horizontalSpeed: 4
   friction: 4
-  corrosionResistance: 10
+  corrosionResistance: 0
   lifetime: 0
-  infammability: 0
-  buoyancy: 5
+  infammability: 0.338

@@ -6,7 +6,7 @@ Shader "Unlit/ParticleRenderer"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Transparent" }
         LOD 100
 
         Pass

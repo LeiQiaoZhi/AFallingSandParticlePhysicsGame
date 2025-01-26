@@ -11,11 +11,14 @@ namespace _Scripts
         private Color color;
         private ParticleType particleType;
         private Vector2 velocity = Vector2.zero;
+        private float corrosion = 0;
+        private float timeAlive = 0;
 
         // properties
-        public Color Color { get; private set; }
+        public Color Color { get; set; }
         public bool Updated { get; set; }
         public ParticleType ParticleType => particleType;
+        public float TimeAlive => timeAlive;
 
         public Vector2 Velocity
         {
@@ -23,6 +26,7 @@ namespace _Scripts
             set => velocity = value;
         }
 
+        #region API
         public void SetType(ParticleType _particleType)
         {
             // Debug.Log($"Setting type to {_particleType}");
@@ -37,5 +41,34 @@ namespace _Scripts
             if (Updated) return;
             particleType.Step(this, _position, _particleContainer, _particleTypeSet, _dt);
         }
+
+        Color originalColor;
+
+        public bool Corrode(float _corrosion)
+        {
+            if (corrosion == 0)
+                originalColor = Color;
+            corrosion += _corrosion;
+            Color = Color.Lerp(originalColor, Color.green, corrosion / particleType.corrosionResistance);
+            if (corrosion >= particleType.corrosionResistance)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool ReduceLifetime(float _dt)
+        {
+            timeAlive += _dt;
+            if (timeAlive >= particleType.lifetime.Value)
+            {
+                return true;
+            }
+
+            return false;
+        }
+        
+        #endregion API
     }
 }

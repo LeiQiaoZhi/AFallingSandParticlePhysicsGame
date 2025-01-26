@@ -27,6 +27,11 @@ namespace _Scripts.ParticleTypes
         public float gravity = 9.81f;
         public int horizontalSpeed = 2;
         public float friction = 0;
+        [Header("Other States")]
+        public float corrosionResistance;
+        public Optional<float> lifetime;
+        [Range(0, 1)]
+        public float infammability;
 
         public Color Color
         {

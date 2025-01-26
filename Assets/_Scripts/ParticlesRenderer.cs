@@ -20,7 +20,7 @@ namespace _Scripts
 
         public void Initialize(Vector2Int _size)
         {
-            texture = new Texture2D(_size.x, _size.y);
+            texture = new Texture2D(_size.x, _size.y, TextureFormat.RGBA32, false);
             colors = new Color[_size.x * _size.y];
             for (var x = 0; x < _size.x; x++)
             {
@@ -42,11 +42,16 @@ namespace _Scripts
                 for (var y = 0; y < height; y++)
                 {
                     Particle particle = _particlesContainer.GetParticleByLocalPosition(new Vector2Int(x, y));
-                    colors[x + y * width] = particle.Color;
+                    // colors[x + y * width] = particle.Color;
+                    if (particle.Color != colors[x + y * width])
+                    {
+                        colors[x + y * width] = particle.Color;
+                        texture.SetPixel(x, y, particle.Color);
+                    }
                 }
             }
 
-            texture.SetPixels(colors);
+            // texture.SetPixels(colors);
             texture.Apply();
 
             meshRenderer.material.mainTexture = texture;
