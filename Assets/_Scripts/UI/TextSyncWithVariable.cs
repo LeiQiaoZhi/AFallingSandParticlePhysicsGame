@@ -5,7 +5,7 @@ using MyHelpers.Variables;
 using TMPro;
 using UnityEngine;
 
-namespace _Scripts
+namespace _Scripts.UI
 {
     [ExecuteInEditMode]
     public class TextSyncWithVariable : InvokeBasedOnLifeCycle

@@ -4,7 +4,7 @@ using MyHelpers.Variables;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts
+namespace _Scripts.UI
 {
     [RequireComponent(typeof(Slider))]
     public class SliderSyncWithFloatVariable : InvokeBasedOnLifeCycle
