@@ -13,15 +13,21 @@ namespace _Scripts
         public IntReference selectedButtonIndex;
         public IntReference brushSize;
         public FloatReference brushDensity;
+        [Range(0, 120)]
+        public float updatesPerSecond = 30;
 
         private Vector2 mousePosition;
         private Vector2 mouseWorldPosition;
         private bool isPainting;
+        private float nextUpdateTime;
 
         private void Update()
         {
             if (isPainting)
             {
+                if (Time.time < nextUpdateTime) return;
+                nextUpdateTime = Time.time + 1f / updatesPerSecond;
+                
                 mouseWorldPosition = Helpers.Camera.ScreenToWorldPoint(mousePosition);
                 Vector2Int center = particlesContainer.WorldToLocalPosition(mouseWorldPosition);
                 Vector2Int bottomLeft = center - Vector2Int.one * brushSize.Value;

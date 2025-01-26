@@ -27,7 +27,7 @@ namespace _Scripts
         {
             // Debug.Log($"Setting type to {_particleType}");
             particleType = _particleType;
-            Color = _particleType.color;
+            Color = _particleType.Color;
             Updated = true;
         }
 

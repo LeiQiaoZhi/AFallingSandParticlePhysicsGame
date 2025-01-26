@@ -12,5 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8c51903468c47e28050f1c5bd4748a5, type: 3}
   m_Name: SandParticle
   m_EditorClassIdentifier: 
-  color: {r: 0.6509434, g: 0.4929136, b: 0.009211446, a: 1}
   particleName: Sand
+  colorType: 1
+  color: {r: 0.6509434, g: 0.4929136, b: 0.009211446, a: 1}
+  color2: {r: 1, g: 0.8227807, b: 0, a: 1}
+  speedMultiplier: 100
+  resistance: 0
+  gravity: 4
+  horizontalSpeed: 2
+  buoyancy: 5

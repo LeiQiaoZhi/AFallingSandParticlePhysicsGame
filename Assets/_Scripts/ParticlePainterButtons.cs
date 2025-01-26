@@ -22,10 +22,10 @@ namespace _Scripts
             for (var i = 0; i < types.Count; i++)
             {
                 GameObject button = Instantiate(buttonPrefab, transform);
-                button.GetComponent<Image>().color = types[i].color;
+                button.GetComponent<Image>().color = types[i].Color;
                 var text = button.GetComponentInChildren<TextMeshProUGUI>();
                 text.text = types[i].particleName;
-                text.color = Helpers.GetBlackWhiteContrastColor(types[i].color);
+                text.color = Helpers.GetBlackWhiteContrastColor(types[i].Color);
                 texts.Add(text);
 
                 var iCopy = i;

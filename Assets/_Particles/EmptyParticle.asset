@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4225acf9b1d7481dbf13dbf60ee491ef, type: 3}
   m_Name: EmptyParticle
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 0, b: 0, a: 0.42745098}
   particleName: Delete
+  colorType: 0
+  color: {r: 0, g: 0, b: 0, a: 0.42745098}
+  color2: {r: 0, g: 0, b: 0, a: 0}
+  speedMultiplier: 1
+  resistance: 0.1
+  gravity: 9.81
+  horizontalSpeed: 2

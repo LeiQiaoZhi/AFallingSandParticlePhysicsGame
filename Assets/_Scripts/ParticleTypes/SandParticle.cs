@@ -1,58 +1,63 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace _Scripts.ParticleTypes
 {
     [CreateAssetMenu(fileName = "SandParticle", menuName = "Particles/SandParticle", order = 1)]
     public class SandParticle : ParticleType
     {
+        public float buoyancy = 0.5f;
+
         public override void Step(Particle _particle, Vector2Int _position,
             ParticleEfficientContainer _particleContainer, ParticleTypeSet _particleTypeSet, float _dt)
         {
-            var sand = (SandParticle)_particle.ParticleType;
-            var empty = (EmptyParticle)_particleTypeSet.GetInstanceByType(typeof(EmptyParticle));
-            var water = (WaterParticle)_particleTypeSet.GetInstanceByType(typeof(WaterParticle));
-            
-            Particle bottom = _particleContainer.GetParticleByLocalPosition(_position + Vector2Int.down);
-            if (bottom == null) return; // Hit the bottom of the grid
-            if (bottom.ParticleType is EmptyParticle)
-            {
-                _particle.SetType(empty);
-                bottom.SetType(sand);
-                return;
-            }
-            if (bottom.ParticleType is WaterParticle)
-            {
-                _particle.SetType(water);
-                bottom.SetType(sand);
-                return;
-            }
+            // update speed
+            _dt *= speedMultiplier;
 
-            Particle bottomLeft = _particleContainer.GetParticleByLocalPosition(_position + Vector2Int.down + Vector2Int.left);
-            if (bottomLeft != null && bottomLeft.ParticleType is EmptyParticle)
-            {
-                _particle.SetType(empty);
-                bottomLeft.SetType(sand);
-                return;
-            }
 
-            if (bottomLeft != null && bottomLeft.ParticleType is WaterParticle)
+            Vector2Int[] pointsToTest =
             {
-                _particle.SetType(water);
-                bottomLeft.SetType(sand);
-                return;
-            }
+                _position + Vector2Int.down,
+                _position + Vector2Int.down + Vector2Int.left,
+                _position + Vector2Int.down + Vector2Int.right,
+            };
 
-            Particle bottomRight = _particleContainer.GetParticleByLocalPosition(_position + Vector2Int.down + Vector2Int.right);
-            if (bottomRight != null && bottomRight.ParticleType is EmptyParticle)
+            foreach (Vector2Int pointToTest in pointsToTest)
             {
-                _particle.SetType(empty);
-                bottomRight.SetType(sand);
-                return;
-            }
-            if (bottomRight != null && bottomRight.ParticleType is WaterParticle)
-            {
-                _particle.SetType(water);
-                bottomRight.SetType(sand);
+                Particle particleToTest = _particleContainer.GetParticleByLocalPosition(pointToTest);
+                if (
+                    particleToTest != null
+                    && particleToTest.ParticleType is EmptyParticle or WaterParticle
+                )
+                {
+                    UpdateVelocity(_particle, _dt, particleToTest.ParticleType.resistance);
+                    
+                    // Buoyancy
+                    if (particleToTest.ParticleType is WaterParticle)
+                    {
+                        var v = Mathf.Clamp(_particle.Velocity.y - buoyancy, 0f, 10f);
+                        _particle.Velocity = new Vector2(_particle.Velocity.x, v);
+                    }
+
+                    var verticalOffset = (int)(_particle.Velocity.y * _dt);
+                    var horizontalOffset = (int)(horizontalSpeed * _dt);
+                    Assert.IsTrue(verticalOffset >= 0, "Vertical offset must be positive");
+
+                    var offset = new Vector2Int(
+                        (pointToTest.x - _position.x) * horizontalOffset,
+                        (pointToTest.y - _position.y) * verticalOffset
+                    );
+
+                    Vector2Int target = _position + offset;
+                    Vector2Int destination = TryMoveToTarget(pointToTest, target, _particleContainer,
+                        _p => _p.ParticleType is not (EmptyParticle or WaterParticle)
+                    );
+                    
+                    if (offset.sqrMagnitude > 0.9)
+                        _particleContainer.Swap(_position, destination);
+
+                    return;
+                }
             }
         }
     }

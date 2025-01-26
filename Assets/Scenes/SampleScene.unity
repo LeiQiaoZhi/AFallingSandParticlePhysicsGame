@@ -206,7 +206,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.6
+  m_Value: 0.109
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -847,6 +847,7 @@ MonoBehaviour:
     useConstant: 0
     constantValue: 0
     variable: {fileID: 11400000, guid: b338e976bbd4d4926ad17106f5801bfd, type: 2}
+  updatesPerSecond: 30
 --- !u!1 &850580296
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,7 +1340,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 20
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
