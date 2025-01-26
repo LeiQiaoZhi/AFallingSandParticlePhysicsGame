@@ -803,7 +803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c790c70f67c45bb9dff68dfdcfe9e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 200, y: 200}
+  size: {x: 50, y: 50}
   particlesRenderer: {fileID: 619491711}
 --- !u!114 &836008777
 MonoBehaviour:

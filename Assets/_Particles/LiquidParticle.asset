@@ -9,23 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09d728120f654e97ad38e330a832e455, type: 3}
-  m_Name: AcidParticle
+  m_Script: {fileID: 11500000, guid: 4400e585fb4a424998efdf445cb546f3, type: 3}
+  m_Name: LiquidParticle
   m_EditorClassIdentifier: 
-  particleName: Acid
+  particleName: Liquid
   colorType: 0
-  color: {r: 0.49195233, g: 1, b: 0.3537736, a: 1}
+  color: {r: 0.28057137, g: 0.74123096, b: 0.9150943, a: 1}
   color2: {r: 0, g: 0, b: 0, a: 0}
   speedMultiplier: 100
   resistance: 1
-  gravity: 3.81
-  horizontalSpeed: 6
-  friction: 7.04
+  gravity: 4
+  horizontalSpeed: 51
+  friction: 4
   corrosionResistance: 0
   lifetime:
     enabled: 0
     value: 0
-  infammability: 0
+  infammability: 0.338
   reactions:
-  - {fileID: 11400000, guid: 58c9a92692ad749cdb0561aed4127be8, type: 2}
-  corrosionStrength: 1
+  - {fileID: 11400000, guid: a7281f87d7f8040e2b920b3974008f9b, type: 2}
+  density: 0

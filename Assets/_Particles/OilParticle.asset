@@ -19,8 +19,13 @@ MonoBehaviour:
   speedMultiplier: 100
   resistance: 1
   gravity: 4
-  horizontalSpeed: 4
+  horizontalSpeed: 51
   friction: 4
   corrosionResistance: 0
-  lifetime: 0
+  lifetime:
+    enabled: 0
+    value: 0
   infammability: 0.338
+  reactions:
+  - {fileID: 11400000, guid: 98a4014fb99bd4840b17daf0cec1b8e7, type: 2}
+  density: 0

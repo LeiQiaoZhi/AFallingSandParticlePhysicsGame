@@ -21,9 +21,10 @@ MonoBehaviour:
   gravity: 4
   horizontalSpeed: 469
   friction: 0
-  corrosionResistance: 0
+  corrosionResistance: 100
   lifetime:
     enabled: 0
     value: 0
   infammability: 0
+  reactions: []
   steamParticle: {fileID: 11400000, guid: d221e6bb16346435aa4cb7a40d30f547, type: 2}

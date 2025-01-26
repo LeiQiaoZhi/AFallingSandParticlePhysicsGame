@@ -1,11 +1,15 @@
+using _Scripts.Reactions;
+using MyBox;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace _Scripts.ParticleTypes
 {
     [CreateAssetMenu(fileName = "LiquidParticle", menuName = "Particles/LiquidParticle", order = 2)]
-    public class LiquidParticle : ParticleType
+    public class LiquidParticle : ParticleType, ILiquid
     {
+        [Header("Liquid")] public float density;
+
         public override void Step(Particle _particle, Vector2Int _position,
             ParticleEfficientContainer _particleContainer, ParticleTypeSet _particleTypeSet, float _dt)
         {
@@ -24,10 +28,6 @@ namespace _Scripts.ParticleTypes
                 (pointsToTest[1], pointsToTest[2]) = (pointsToTest[2], pointsToTest[1]);
             if (Random.value < 0.5f)
                 (pointsToTest[^2], pointsToTest[^1]) = (pointsToTest[^1], pointsToTest[^2]);
-            
-            var particlesToTest = new Particle[pointsToTest.Length];
-            for (int i = 0; i < pointsToTest.Length; i++)
-                particlesToTest[i] = _particleContainer.GetParticleByLocalPosition(pointsToTest[i]);
 
             // movement
             foreach (Vector2Int pointToTest in pointsToTest)
@@ -60,6 +60,19 @@ namespace _Scripts.ParticleTypes
                     return;
                 }
             }
+            
+            // react
+            reactions.ForEach(_reaction => _reaction.React(_particleContainer, _particle, _position));
         }
+
+        public float Density()
+        {
+            return density;
+        }
+    }
+
+    public interface ILiquid
+    {
+        public float Density();
     }
 }

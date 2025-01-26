@@ -1,4 +1,5 @@
 using System;
+using _Scripts.Reactions;
 using MyBox;
 using MyHelpers;
 using UnityEngine;
@@ -17,7 +18,7 @@ namespace _Scripts.ParticleTypes
     {
         public string particleName;
         [Header("Color")] public ColorType colorType;
-        [SerializeField] private Color color;
+        [SerializeField] protected Color color;
 
         [ConditionalField(nameof(colorType), false, ColorType.RandomBetweenTwoColors)] [SerializeField]
         private Color color2;
@@ -32,6 +33,8 @@ namespace _Scripts.ParticleTypes
         public Optional<float> lifetime;
         [Range(0, 1)]
         public float infammability;
+        [Header("Reactions")]
+        public Reaction[] reactions;
 
         public Color Color
         {
@@ -47,7 +50,7 @@ namespace _Scripts.ParticleTypes
 
         public abstract void Step(Particle _particle, Vector2Int _position,
             ParticleEfficientContainer _particleContainer, ParticleTypeSet _particleTypeSet, float _dt);
-
+        
         protected static Vector2Int TryMoveToTarget(Vector2Int _position, Vector2Int _targetPosition,
             ParticleEfficientContainer _particleContainer)
         {

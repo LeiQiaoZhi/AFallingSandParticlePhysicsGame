@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf8f3c46b9e49d6b38d9dcd401a53c6, type: 3}
+  m_Name: Water + Fire = Steam
+  m_EditorClassIdentifier: 
+  targetParticleType: {fileID: 11400000, guid: 38c13af8fd5294b788674c7a426630a4, type: 2}
+  directionsToTest:
+  - {x: 0, y: -1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 0}
+  - {x: -1, y: 0}
+  selfBecomes: {fileID: 11400000, guid: d221e6bb16346435aa4cb7a40d30f547, type: 2}
+  targetBecomes: {fileID: 11400000, guid: d285dcca99e65494988b985e55f382c7, type: 2}
+  chance: 0.272

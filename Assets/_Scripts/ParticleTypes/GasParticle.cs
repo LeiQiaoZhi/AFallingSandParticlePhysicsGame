@@ -70,6 +70,9 @@ namespace _Scripts.ParticleTypes
                     return;
                 }
             }
+            
+            // react
+            reactions.ForEach(_reaction => _reaction.React(_particleContainer, _particle, _position));
         }
     }
 }

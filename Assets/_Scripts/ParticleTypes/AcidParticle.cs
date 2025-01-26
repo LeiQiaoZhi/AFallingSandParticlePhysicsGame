@@ -1,3 +1,4 @@
+using MyBox;
 using MyHelpers;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -27,7 +28,7 @@ namespace _Scripts.ParticleTypes
                 (pointsToTest[1], pointsToTest[2]) = (pointsToTest[2], pointsToTest[1]);
             if (Random.value < 0.5f)
                 (pointsToTest[^2], pointsToTest[^1]) = (pointsToTest[^1], pointsToTest[^2]);
-            
+
             var particlesToTest = new Particle[pointsToTest.Length];
             for (int i = 0; i < pointsToTest.Length; i++)
                 particlesToTest[i] = _particleContainer.GetParticleByLocalPosition(pointsToTest[i]);
@@ -65,6 +66,9 @@ namespace _Scripts.ParticleTypes
                     return;
                 }
             }
+
+            // react
+            reactions.ForEach(_reaction => _reaction.React(_particleContainer, _particle, _position));
         }
 
         private void Corrode(ParticleEfficientContainer _particleContainer, Vector2Int _position,
@@ -73,7 +77,10 @@ namespace _Scripts.ParticleTypes
             foreach (Vector2Int pointToTest in _pointsToTest)
             {
                 Particle particleToCorrode = _particleContainer.GetParticleByLocalPosition(pointToTest);
-                if (particleToCorrode != null && particleToCorrode.ParticleType is not (EmptyParticle or AcidParticle))
+                if (particleToCorrode != null &&
+                    particleToCorrode.ParticleType is not (EmptyParticle or AcidParticle) &&
+                    particleToCorrode.ParticleType.corrosionResistance >= 0 // resistance < 0 means it can't be corroded
+                   )
                 {
                     var corroded = particleToCorrode.Corrode(corrosionStrength);
                     if (corroded)
@@ -81,6 +88,12 @@ namespace _Scripts.ParticleTypes
                         particleToCorrode.SetType(_particleTypeSet.GetInstanceByType(typeof(EmptyParticle)));
                         _particleContainer.Swap(pointToTest, _position);
                     }
+                    else
+                    {
+                        particleToCorrode.Color = Color.Lerp(particleToCorrode.ParticleType.Color, color,
+                            particleToCorrode.TimeAlive / lifetime.Value);
+                    }
+
                     break;
                 }
             }

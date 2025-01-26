@@ -42,14 +42,10 @@ namespace _Scripts
             particleType.Step(this, _position, _particleContainer, _particleTypeSet, _dt);
         }
 
-        Color originalColor;
 
         public bool Corrode(float _corrosion)
         {
-            if (corrosion == 0)
-                originalColor = Color;
             corrosion += _corrosion;
-            Color = Color.Lerp(originalColor, Color.green, corrosion / particleType.corrosionResistance);
             if (corrosion >= particleType.corrosionResistance)
             {
                 return true;
