@@ -44,7 +44,8 @@ namespace _Scripts
             for (var i = 0; i < texts.Count; i++)
             {
                 Color newColor = texts[i].color;
-                newColor.a = i == _index ? 1 : 0.5f;
+                newColor.a = i == _index ? 1 : 0.3f;
+                texts[i].fontStyle = i == _index ? FontStyles.Bold : FontStyles.Normal;
                 texts[i].color = newColor;
             }
         }

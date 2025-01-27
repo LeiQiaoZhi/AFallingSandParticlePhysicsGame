@@ -18,8 +18,8 @@ MonoBehaviour:
   color2: {r: 0, g: 0, b: 0, a: 0}
   speedMultiplier: 100
   resistance: 1
-  gravity: 4
-  horizontalSpeed: 10
+  gravity: 1
+  horizontalSpeed: 4
   friction: 0
   corrosionResistance: 100
   lifetime:

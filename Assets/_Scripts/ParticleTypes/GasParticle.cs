@@ -1,4 +1,5 @@
 using MyBox;
+using MyHelpers;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -34,7 +35,7 @@ namespace _Scripts.ParticleTypes
             };
 
             // shuffle to simulate brownian motion
-            pointsToTest.Shuffle();
+            Helpers.Shuffle(pointsToTest);
 
             foreach (Vector2Int pointToTest in pointsToTest)
             {

@@ -32,7 +32,7 @@ namespace _Scripts.ParticleTypes
                 Particle particleToTest = _particleContainer.GetParticleByLocalPosition(pointToTest);
                 if (
                     particleToTest != null
-                    && particleToTest.ParticleType is EmptyParticle or LiquidParticle
+                    && particleToTest.ParticleType is EmptyParticle or LiquidParticle or GasParticle
                 )
                 {
                     // Friction
@@ -58,7 +58,7 @@ namespace _Scripts.ParticleTypes
                     );
                     Vector2Int target = _position + offset;
                     Vector2Int destination = TryMoveToTarget(pointToTest, target, _particleContainer,
-                        _p => _p.ParticleType is not (EmptyParticle or LiquidParticle)
+                        _p => _p.ParticleType is not (EmptyParticle or LiquidParticle or GasParticle)
                     );
 
                     if (offset.sqrMagnitude > 0.9)

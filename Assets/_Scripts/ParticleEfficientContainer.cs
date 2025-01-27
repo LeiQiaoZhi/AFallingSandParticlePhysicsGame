@@ -93,7 +93,16 @@ namespace _Scripts
 
         public void Load(SerializableContainer _data, ParticleTypeSet _particleTypeSet)
         {
-            size = new Vector2Int(_data.width, _data.height);
+            if (size.x != _data.width || size.y != _data.height)
+            {
+                size = new Vector2Int(_data.width, _data.height);
+                particles = new Particle[size.x, size.y];
+                for (var x = 0; x < size.x; x++)
+                    for (var y = 0; y < size.y; y++)
+                        particles[x, y] = new Particle();
+            }
+            Debug.Log($"Loading container with size {size}");
+
             for (var x = 0; x < size.x; x++)
             {
                 for (var y = 0; y < size.y; y++)

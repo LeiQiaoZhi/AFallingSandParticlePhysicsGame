@@ -9,10 +9,11 @@ namespace _Scripts.Save
 {
     public static class Saver 
     {
-        public static void SaveData(ParticleEfficientContainer _particlesContainer, ParticleTypeSet _particleTypeSet)
+        public static void SaveData(ParticleEfficientContainer _particlesContainer, ParticleTypeSet _particleTypeSet,
+            string _fileName)
         {
             BinaryFormatter formatter = GetFormatterWithSurrogates();
-            var path = Application.persistentDataPath + "/particles.sav";
+            var path = Application.persistentDataPath + $"/{_fileName}.sav";
 
             using (var stream = new FileStream(path, FileMode.Create))
             {
@@ -50,9 +51,9 @@ namespace _Scripts.Save
             return formatter;
         }
         
-        public static SerializableContainer LoadData()
+        public static SerializableContainer LoadData(string _fileName)
         {
-            var path = Application.persistentDataPath + "/particles.sav";
+            var path = Application.persistentDataPath + $"/{_fileName}.sav";
             if (!File.Exists(path))
             {
                 Debug.LogError("Save file not found in " + path);

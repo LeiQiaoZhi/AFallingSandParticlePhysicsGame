@@ -9,21 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4225acf9b1d7481dbf13dbf60ee491ef, type: 3}
-  m_Name: EmptyParticle
+  m_Script: {fileID: 11500000, guid: 625617b6de9048d28f95fa6b4a665763, type: 3}
+  m_Name: Lava Tap
   m_EditorClassIdentifier: 
-  particleName: Delete
+  particleName: Lava Tap
   colorType: 0
-  color: {r: 0, g: 0, b: 0, a: 0}
-  color2: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 0.30980393, g: 0.08627451, b: 0.115153655, a: 1}
+  color2: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
   speedMultiplier: 1
-  resistance: 0.2
+  resistance: 1
   gravity: 9.81
   horizontalSpeed: 2
   friction: 2
-  corrosionResistance: 0
+  corrosionResistance: 100
   lifetime:
     enabled: 0
     value: 0
   infammability: 0
-  reactions: []
+  reactions:
+  - {fileID: 11400000, guid: 25c92a2a043664a66af0c54eab4ca266, type: 2}

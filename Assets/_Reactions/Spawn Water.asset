@@ -10,17 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cdf8f3c46b9e49d6b38d9dcd401a53c6, type: 3}
-  m_Name: Acid + Water = Oil
+  m_Name: Spawn Water
   m_EditorClassIdentifier: 
   targetCheckMethod: 0
-  targetParticleType: {fileID: 11400000, guid: 7ea1ac450d1d04793833ddad1ffbabfc, type: 2}
+  targetParticleType: {fileID: 11400000, guid: d285dcca99e65494988b985e55f382c7, type: 2}
   directionsToTest:
   - {x: 0, y: -1}
-  - {x: 0, y: 1}
   selfBecomes:
-    enabled: 1
-    value: {fileID: 11400000, guid: fffc0d947a25443dc948c599a003b49d, type: 2}
+    enabled: 0
+    value: {fileID: 0}
   targetBecomes:
     enabled: 1
-    value: {fileID: 11400000, guid: d285dcca99e65494988b985e55f382c7, type: 2}
-  chance: 0.272
+    value: {fileID: 11400000, guid: 7ea1ac450d1d04793833ddad1ffbabfc, type: 2}
+  chance: 0.037

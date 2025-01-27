@@ -1,3 +1,4 @@
+using MyBox;
 using UnityEngine;
 
 namespace _Scripts.ParticleTypes
@@ -8,6 +9,8 @@ namespace _Scripts.ParticleTypes
         public override void Step(Particle _particle, Vector2Int _position,
             ParticleEfficientContainer _particleContainer, ParticleTypeSet _particleTypeSet, float _dt)
         {
+            // react
+            reactions.ForEach(_reaction => _reaction.React(_particleContainer, _particle, _position));
         }
     }
 }

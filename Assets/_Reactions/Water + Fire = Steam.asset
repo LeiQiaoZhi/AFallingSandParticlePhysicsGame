@@ -19,6 +19,10 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: 1, y: 0}
   - {x: -1, y: 0}
-  selfBecomes: {fileID: 11400000, guid: d221e6bb16346435aa4cb7a40d30f547, type: 2}
-  targetBecomes: {fileID: 11400000, guid: d285dcca99e65494988b985e55f382c7, type: 2}
+  selfBecomes:
+    enabled: 1
+    value: {fileID: 11400000, guid: d221e6bb16346435aa4cb7a40d30f547, type: 2}
+  targetBecomes:
+    enabled: 1
+    value: {fileID: 11400000, guid: d285dcca99e65494988b985e55f382c7, type: 2}
   chance: 1

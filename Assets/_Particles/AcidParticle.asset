@@ -18,7 +18,7 @@ MonoBehaviour:
   color2: {r: 0, g: 0, b: 0, a: 0}
   speedMultiplier: 100
   resistance: 1
-  gravity: 3.81
+  gravity: 1
   horizontalSpeed: 6
   friction: 7.04
   corrosionResistance: 0
