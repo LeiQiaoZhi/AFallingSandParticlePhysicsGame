@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fceef5112dd46768d27fc7e44b0ed3e, type: 3}
+  m_Name: Circle Brush
+  m_EditorClassIdentifier: 
+  brushName: Circle
+  brushIcon: {fileID: -2413806693520163455, guid: 019eb1cd6dde5449780fc78cd80a5085, type: 3}
+  brushPreviewMaterial: {fileID: -876546973899608171, guid: 3f62fe5d4560040dbbd3b7566c64aff5, type: 3}

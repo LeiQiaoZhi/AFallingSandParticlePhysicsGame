@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466ee998bf61403fa234c0dbd73e22a5, type: 3}
+  m_Name: Square Brush
+  m_EditorClassIdentifier: 
+  brushName: Square
+  brushIcon: {fileID: 7482667652216324306, guid: fa1c25ea594154742bd24342a9b9b020, type: 3}
+  brushPreviewMaterial: {fileID: -876546973899608171, guid: 55f9b90d8101d4a9189ef2181ac1f899, type: 3}

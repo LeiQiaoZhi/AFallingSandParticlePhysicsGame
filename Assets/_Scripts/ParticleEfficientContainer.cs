@@ -25,6 +25,8 @@ namespace _Scripts
             new Vector2(particlesRenderer.transform.localScale.x, particlesRenderer.transform.localScale.y) * 1;
 
         public Vector2 BottomLeftWorldPosition => (Vector2)particlesRenderer.transform.position - WorldSize / 2;
+        public Vector2 TopRightWorldPosition => BottomLeftWorldPosition + WorldSize;
+        public Vector2 CellWorldSize => WorldSize / size;
 
         public void Initialize()
         {
